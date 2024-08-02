@@ -1,0 +1,33 @@
+{
+  "indexer": {
+    "name": "OrbWeaver Indexer",
+    "version": "0.1.0",
+    "chains": [
+      {
+        "chainId": 1,
+        "name": "Ethereum",
+        "rpcUrl": "https://eth-mainnet.g.alchemy.com/v2/YOUR_API_KEY",
+        "startBlock": 0,
+        "confirmations": 12
+      },
+      {
+        "chainId": 137,
+        "name": "Polygon",
+        "rpcUrl": "https://polygon-mainnet.g.alchemy.com/v2/YOUR_API_KEY",
+        "startBlock": 0,
+        "confirmations": 128
+      }
+    ],
+    "database": {
+      "type": "postgresql",
+      "host": "localhost",
+      "port": 5432,
+      "name": "orbweaver"
+    },
+    "gateway": {
+      "host": "0.0.0.0",
+      "port": 4000
+    }
+  }
+}
+
