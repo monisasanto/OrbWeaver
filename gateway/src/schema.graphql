@@ -1,0 +1,90 @@
+type Query {
+  chain(chainId: Int!): Chain
+  chains: [Chain!]!
+  schema(schemaId: String!): Schema
+  schemas(entityType: String): [Schema!]!
+  events(chainId: Int!, limit: Int): [Event!]!
+  block(chainId: Int!, blockNumber: Int!): Block
+  crossChainQuery(schemaId: String!, chainIds: [Int!]!): CrossChainResult!
+}
+
+type Chain {
+  chainId: Int!
+  name: String!
+  adapter: String
+  active: Boolean!
+  latestBlock: Int
+}
+
+type Schema {
+  schemaId: String!
+  entityType: String!
+  version: Int!
+  fields: [Field!]!
+  creator: String!
+  active: Boolean!
+}
+
+type Field {
+  name: String!
+  fieldType: String!
+  required: Boolean!
+}
+
+type Event {
+  chainId: Int!
+  blockNumber: Int!
+  transactionHash: String!
+  address: String!
+  topics: [String!]!
+  data: String!
+  timestamp: String!
+}
+
+type Block {
+  chainId: Int!
+  chainName: String!
+  blockNumber: Int!
+  blockHash: String!
+  timestamp: Int!
+  transactions: Int!
+  gasUsed: String!
+  gasLimit: String!
+}
+
+type CrossChainResult {
+  schemaId: String!
+  chains: [ChainData!]!
+  totalResults: Int!
+  estimatedCost: String!
+}
+
+type ChainData {
+  chainId: Int!
+  data: [String!]!
+  blockNumber: Int!
+}
+
+type Mutation {
+  registerSchema(entityType: String!, fields: [FieldInput!]!): RegisterSchemaResult!
+  registerAdapter(chainId: Int!, adapterAddress: String!, chainName: String!): RegisterAdapterResult!
+}
+
+input FieldInput {
+  name: String!
+  fieldType: String!
+  required: Boolean!
+}
+
+type RegisterSchemaResult {
+  success: Boolean!
+  schemaId: String
+  message: String
+}
+
+type RegisterAdapterResult {
+  success: Boolean!
+  chainId: Int
+  message: String
+}
+
