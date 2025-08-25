@@ -1,0 +1,5 @@
+{
+  "ethereum": { "chainId": 1, "name": "Ethereum", "blockTime": 12 },
+  "polygon": { "chainId": 137, "name": "Polygon", "blockTime": 2 },
+  "bsc": { "chainId": 56, "name": "BSC", "blockTime": 3 }
+}
