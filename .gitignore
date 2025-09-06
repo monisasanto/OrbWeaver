@@ -50,3 +50,4 @@ coverage.json
 out/
 cache_forge/
 
+.coverage\n*.log
